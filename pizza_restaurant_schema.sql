@@ -5,7 +5,8 @@ USE `pizza_restaurant_orders`;
 CREATE TABLE IF NOT EXISTS `customers` (
   `phone_number` VARCHAR(15) NOT NULL,
   `customer_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`phone_number`));
+  `customer_id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`customer_id`));
   
   CREATE TABLE IF NOT EXISTS `orders` (
   `date_time` DATETIME NOT NULL,
@@ -20,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`pizza_type`));
   
   CREATE TABLE IF NOT EXISTS `customer_orders` (
-   `phone_number` VARCHAR(15),
+   `customer_id` INT,
    `order_number` INT,
-   FOREIGN KEY (`phone_number`) references `customers` (`phone_number`),
+   FOREIGN KEY (`customer_id`) references `customers` (`customer_id`),
    FOREIGN KEY (`order_number`) references `orders` (`order_number`)
 );
  
