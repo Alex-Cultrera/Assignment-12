@@ -33,7 +33,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where username = :username")
     List<User> findExactlyOneUserByUsername(String username);
 
-
+    @Query("select u from User u"
+        + " left join fetch u.accounts"
+        + " left join fetch u.address")
+    List<User> findAll();
 
 
 }

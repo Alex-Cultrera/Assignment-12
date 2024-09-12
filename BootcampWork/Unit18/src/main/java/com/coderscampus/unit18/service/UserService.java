@@ -1,6 +1,8 @@
 package com.coderscampus.unit18.service;
 
+import com.coderscampus.unit18.domain.Account;
 import com.coderscampus.unit18.domain.User;
+import com.coderscampus.unit18.repository.AccountRepository;
 import com.coderscampus.unit18.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private AccountRepository accountRepo;
 
     public List<User> findByUsername(String username) {
         return userRepo.findByUsername(username);
@@ -49,6 +53,13 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+        if (user.getUserId() == null) {
+            Account checking = new Account();
+            checking.setAccountName("Checking Account");
+            checking.getUsers().add(user);
+            user.getAccounts().add(checking);
+            accountRepo.save(checking);
+        }
         return userRepo.save(user);
     }
 
