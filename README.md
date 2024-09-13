@@ -1,4 +1,4 @@
-#Pizza Restaurant MySQL Database
+# Pizza Restaurant MySQL Database
 
 Project where I designed a MySQL database for a pizza restaurant...
 
